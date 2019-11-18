@@ -10,8 +10,8 @@ function Header(props){
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
-                <li className={window.location.pathname == '/home' ? "nav-item active" : "nav-item"}>
-                    <a className="nav-link" href="/home">Home <span className="sr-only">(current)</span></a>
+                <li className={window.location.pathname == '/' ? "nav-item active" : "nav-item"}>
+                    <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                 </li>
                 <li className={window.location.pathname == '/inventory' ? "nav-item active" : "nav-item"}>
                     <a className="nav-link" href="/inventory">Inventory</a>

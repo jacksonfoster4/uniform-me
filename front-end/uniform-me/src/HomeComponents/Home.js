@@ -5,12 +5,9 @@ class Home extends React.Component {
     componentDidMount(){
         fetch('http://192.168.1.138:8000/api/home').then(res => res.json()).then(
             (result) => {
-                this.tmp = {}
-                Object.keys(result).map( (key) => {
-                    this.tmp[key] = result[key]
-                })
-                this.setState(this.tmp)
-                console.log(this.tmp)
+                this.setState(result)
+                console.log(this.state)
+                return result
             }
         )
     }

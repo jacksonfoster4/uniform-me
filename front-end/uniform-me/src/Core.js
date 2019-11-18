@@ -8,21 +8,21 @@ import Employees from './EmployeeComponents/Employees';
 import Requests from './RequestComponents/Requests';
 import User from './UserComponents/User';
 import NotFound from './NotFound'
-
+import ProtectedRouter from './ProtectedRouter'
 function Core() {
     return (
         <div>
             <Header />
-            <BrowserRouter>
+            <ProtectedRouter>
                 <Switch>
-                    <Route path="/home" component={Home}/>
+                    <Route exact path="/" component={Home}/>
                     <Route path="/inventory" component={Inventory} />
                     <Route path="/employee" component={Employees} />
                     <Route path="/requests" component={Requests} />
                     <Route path="/user" component={User} />
                     <Route component={NotFound} />
                 </Switch>
-            </BrowserRouter>
+            </ProtectedRouter>
         </div>
     );
   }
