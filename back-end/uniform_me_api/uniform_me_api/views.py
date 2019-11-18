@@ -31,12 +31,8 @@ def get_most_requested_item():
 
 
 def get_thirty_day_alerts():
-    return list( 
-            Employee.objects.filter(
-                start_date__lte=timezone.now()-timedelta(days=30),
-                has_thirty_day_alert=True
-            ).values_list('name', flat=True)
-        )
+    # middleware checks and updates objects every request
+    return list( Employee.objects.filter( has_thirty_day_alert=True ).values_list('name', flat=True) )
 
 
 def get_distribution_totals():
@@ -54,7 +50,8 @@ def get_distribution_totals():
 
 
 def get_reorder_alerts():
-    return []
+    # middleware checks and updates objects every request
+    return list( Item.objects.filter(need_to_reorder=True).values_list('name', flat=True) )
 
 
 def get_number_of_active_requests():

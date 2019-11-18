@@ -11,15 +11,18 @@ class Item(models.Model):
     need_to_reorder = models.BooleanField(default=False)
     reorder_point = models.IntegerField(blank=True)
 
+
     def __str__(self):
         if self.size:
             return "{} - ({})".format(self.name, self.size)
         return self.name
 
+
     def set_reorder_point(self):
         # if user hasnt specified a reorder point, set it to 2 times the last inventory out event
         if not self.reorder_point:
             self.reorder_point = InventoryEvent.objects.filter(item=self)[0].change * 2
+
 
     def save(self, *args, **kwargs):
         if self.id:
@@ -37,6 +40,8 @@ class Item(models.Model):
 
         super(Item, self).save(*args, **kwargs)
 
+
+
 class InventoryEvent(models.Model):
     # used to log when inventory changes
     start_quantity = models.IntegerField(blank=False)
@@ -44,10 +49,12 @@ class InventoryEvent(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, blank=False)
     date = models.DateField(blank=False)
 
+
     def __str__(self):
         if self.delta() > 0:
             return "Incoming - {}".format(self.date)
         return "Outgoing - {}".format(self.date)
+
 
     def delta(self):
         return self.end_quantity - self.start_quantity
