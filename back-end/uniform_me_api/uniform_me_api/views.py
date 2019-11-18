@@ -31,9 +31,12 @@ def get_most_requested_item():
 
 
 def get_thirty_day_alerts():
-    return list( Employee.objects.filter(
-        start_date__lte=timezone.now()-timedelta(days=30)
-    ) )
+    return list( 
+            Employee.objects.filter(
+                start_date__lte=timezone.now()-timedelta(days=30),
+                has_thirty_day_alert=True
+            ).values_list('name', flat=True)
+        )
 
 
 def get_distribution_totals():
