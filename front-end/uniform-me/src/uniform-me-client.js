@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 const root = "http://192.168.1.138:8000/api/"
 async function fetchUrl(path, method, body){
     if(path[0] == "/"){
-        path[0] = path.substring(1)
+        path = path.substring(1)
     }
     return await fetch(root+path, {
 
@@ -27,7 +27,7 @@ async function fetchUrl(path, method, body){
 
 async function fetchAuthedUrl(path, method, body){
     if(path[0] == "/"){
-        path[0] = path.substring(1)
+        path = path.substring(1)
     }    
     return await fetch(root+path, {
         headers: new Headers({
