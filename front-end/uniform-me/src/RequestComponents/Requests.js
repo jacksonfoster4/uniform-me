@@ -1,26 +1,22 @@
+
 import React from 'react';
-import fetchAuthedUrl from '../uniform-me-client'
+import RequestList from './RequestList'
+import RequestDetail from './RequestDetail'
+import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom'
 
 class Requests extends React.Component {
-    state ={}
-    componentDidMount(){
-        fetchAuthedUrl("requests", "GET").then( (result) => {
-            this.setState({requests: result})
-        })
-    }
     render(){
         return (
             <div>
-            { this.state.requests ? 
-                this.state.requests.map( (request) => { return(
-                    <div>
-                        {request['employee']['name']} | {request['quantity']} {request['item']['name']}s
-                    </div>    
-                )})
-                : null}
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/requests/:id" component={RequestDetail} />
+                        <Route path="/requests" component={RequestList} />
+                    </Switch>
+                </BrowserRouter>
             </div>
         );
     }
   }
   
-  export default Requests;
+  export default withRouter(Requests);

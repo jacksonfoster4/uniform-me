@@ -18,7 +18,7 @@ function Core() {
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/inventory" component={Inventory} />
-                    <Route path="/employee" component={Employees} />
+                    <Route path="/employees" component={Employees} />
                     <Route path="/requests" component={Requests} />
                     <Route path="/user" component={User} />
                     <Route component={NotFound} />

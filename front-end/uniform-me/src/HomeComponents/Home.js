@@ -3,7 +3,7 @@ import fetchAuthedUrl from '../uniform-me-client'
 class Home extends React.Component {
     state = {}
     componentDidMount(){
-        fetchAuthedUrl("home", "GET").then( (result) => {
+        fetchAuthedUrl("home").then( (result) => {
             this.setState(result)
         })
     }

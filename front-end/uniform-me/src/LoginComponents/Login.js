@@ -16,8 +16,6 @@ class Login extends React.Component {
         }).then( (result) => {
             Cookie.set('authToken', result['token'])
             this.props.history.push("/");
-        }).catch( (error) => {
-            console.log(error)
         })
     }
 

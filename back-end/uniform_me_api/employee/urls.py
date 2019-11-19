@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.ListEmployeesView.as_view(), name="employees-all"),
+    path('<int:pk>', views.RetrieveEmployeeView.as_view())
 ]

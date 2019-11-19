@@ -10,3 +10,10 @@ class ListRequestsView(generics.ListAPIView):
     """
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
+
+class RetrieveRequestView(generics.RetrieveAPIView):
+    """
+    Provides a get method handler.
+    """
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer

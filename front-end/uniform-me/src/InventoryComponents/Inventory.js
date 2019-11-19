@@ -1,25 +1,23 @@
+
 import React from 'react';
-import fetchAuthedUrl from '../uniform-me-client'
+import InventoryList from './InventoryList'
+import InventoryDetail from './InventoryDetail'
+import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom'
+
 class Inventory extends React.Component {
-    state ={}
-    componentDidMount(){
-        fetchAuthedUrl("inventory", "GET").then( (result) => {
-            this.setState({items: result})
-        })
-    }
     render(){
         return (
             <div>
-            { this.state.items ? 
-                this.state.items.map( (item) => { return(
-                    <div>
-                        {item['name']} | {item['quantity']}
-                    </div>    
-                )})
-                : null}
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/inventory/:id" component={InventoryDetail} />
+                        <Route path="/inventory" component={InventoryList} />
+                    </Switch>
+                </BrowserRouter>
             </div>
+            
         );
     }
   }
   
-  export default Inventory;
+  export default withRouter(Inventory);

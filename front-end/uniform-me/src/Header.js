@@ -23,8 +23,8 @@ class Header extends React.Component {
                     <li className={window.location.pathname == '/inventory' ? "nav-item active" : "nav-item"}>
                         <a className="nav-link" href="/inventory">Inventory</a>
                     </li>
-                    <li className={window.location.pathname == '/employee' ? "nav-item active" : "nav-item"}>
-                        <a className="nav-link" href="/employee" tabIndex="-1" aria-disabled="true">Employees</a>
+                    <li className={window.location.pathname == '/employees' ? "nav-item active" : "nav-item"}>
+                        <a className="nav-link" href="/employees" tabIndex="-1" aria-disabled="true">Employees</a>
                     </li>
                     <li className={window.location.pathname == '/requests' ? "nav-item active" : "nav-item"}>
                         <a className="nav-link" href="/requests" tabIndex="-1" aria-disabled="true">Requests</a>

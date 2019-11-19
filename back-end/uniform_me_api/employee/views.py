@@ -10,3 +10,10 @@ class ListEmployeesView(generics.ListAPIView):
     """
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+class RetrieveEmployeeView(generics.RetrieveAPIView):
+    """
+    Provides a get method handler.
+    """
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer

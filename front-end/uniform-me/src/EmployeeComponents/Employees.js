@@ -1,30 +1,22 @@
 import React from 'react';
+import EmployeeList from './EmployeeList'
+import EmployeeDetail from './EmployeeDetail'
 
+import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom'
 class Employees extends React.Component {
-    state = {}
-    componentDidMount(){
-        fetch("http://192.168.1.138:8000/api/employees").then(res => res.json()).then(
-            (result) => {
-                this.setState({
-                    employees: result
-                })
-            }
-        )
-    }
     render(){
         return (
             <div>
-            { this.state.employees ? 
-                this.state.employees.map( (employee) => { return(
-                    <div>
-                        {employee['name']} | {employee['role']}
-                    </div>    
-                )})
-                : null}
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/employees/:id" component={EmployeeDetail} />
+                        <Route path="/employees" component={EmployeeList} />
+                    </Switch>
+                </BrowserRouter>
             </div>
             
         );
     }
   }
   
-  export default Employees;
+  export default withRouter(Employees);
