@@ -1,15 +1,11 @@
 import React from 'react';
-
+import fetchAuthedUrl from '../uniform-me-client'
 class Home extends React.Component {
     state = {}
     componentDidMount(){
-        fetch('http://192.168.1.138:8000/api/home').then(res => res.json()).then(
-            (result) => {
-                this.setState(result)
-                console.log(this.state)
-                return result
-            }
-        )
+        fetchAuthedUrl("home", "GET").then( (result) => {
+            this.setState(result)
+        })
     }
     
     render(){

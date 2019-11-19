@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Header from './Header';
 import Home from './HomeComponents/Home';
@@ -9,11 +9,12 @@ import Requests from './RequestComponents/Requests';
 import User from './UserComponents/User';
 import NotFound from './NotFound'
 import ProtectedRouter from './ProtectedRouter'
+
 function Core() {
     return (
         <div>
-            <Header />
             <ProtectedRouter>
+                <Header />
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/inventory" component={Inventory} />

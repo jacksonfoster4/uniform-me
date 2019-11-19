@@ -3,7 +3,7 @@ import React from 'react';
 class Employees extends React.Component {
     state = {}
     componentDidMount(){
-        fetch("http://192.168.1.138:8000/api/employee").then(res => res.json()).then(
+        fetch("http://192.168.1.138:8000/api/employees").then(res => res.json()).then(
             (result) => {
                 this.setState({
                     employees: result

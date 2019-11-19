@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'request.apps.RequestConfig',
     'inventory.apps.InventoryConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders'
 ]
 
@@ -134,3 +135,9 @@ CORS_ORIGIN_WHITELIST = [
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:3000',
 ]
+LOGIN_REDIRECT_URL = '/api/users'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+}

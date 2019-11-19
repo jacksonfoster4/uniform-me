@@ -1,10 +1,13 @@
 import React from 'react';
+import Cookie from 'js-cookie'
 import { BrowserRouter, Redirect } from 'react-router-dom'
 
 class ProtectedRouter extends React.Component {
+
     state = {
-        authenticated: true
+        authenticated: Cookie.get('authToken') ? true : false
     }
+
     render(){
         if(this.state.authenticated){
             return( 

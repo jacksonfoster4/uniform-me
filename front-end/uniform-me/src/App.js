@@ -1,8 +1,7 @@
 import React from 'react';
 import Core from './Core'
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './LoginComponents/Login'
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/login" component={Login} />
-          <Route path="/" component={Core} />
+          <Route component={Core} />
         </Switch>
       </BrowserRouter>
     </div>
