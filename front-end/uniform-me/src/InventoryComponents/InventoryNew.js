@@ -3,7 +3,6 @@ import fetchAuthedUrl from '../uniform-me-client'
 import { withRouter } from 'react-router-dom'
 
 class InventoryNew extends React.Component {
-    state = {}
     
     submit = (e) => {
         e.preventDefault()
@@ -15,7 +14,11 @@ class InventoryNew extends React.Component {
             el.type == "checkbox" ? body[key] = el.checked : body[key] = value
         }
         console.log(body)
-        fetchAuthedUrl("inventory/new/", "POST", body).then( (result) => {
+        // update view also uses this component
+        let url = this.props.url ? this.props.url : "inventory/new/"
+        let method = this.props.method? this.props.method : "POST"
+
+        fetchAuthedUrl(url, method, body).then( (result) => {
             this.props.history.push("/inventory")
         })
     }
@@ -24,15 +27,15 @@ class InventoryNew extends React.Component {
             <form onSubmit={ this.submit }>
                 <div className="form-group">
                     <label for="exampleFormControlInput1">Email address</label>
-                    <input required type="text" className="form-control" name="name" id="name" placeholder="item name" />
+                    <input required type="text" defaultValue={this.props.name} className="form-control" name="name" id="name" placeholder="item name" />
                 </div>
                 <div className="form-group">
                     <label for="exampleFormControlInput1">Email address</label>
-                    <input required type="text" className="form-control" name="quantity" id="quantity" placeholder="quantity" />
+                    <input required type="text" defaultValue={this.props.quantity}className="form-control" name="quantity" id="quantity" placeholder="quantity" />
                 </div>
                 <div className="form-group">
                     <label for="exampleFormControlSelect1">Example select</label>
-                    <input type="checkbox" value="true" name="need_to_reorder"/>
+                    <input type="checkbox" defaultValue={this.props.need_to_reorder}value="true" name="need_to_reorder"/>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>

@@ -29,5 +29,10 @@ class CreateRequestView(generics.CreateAPIView):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
+class UpdateRequestView(generics.UpdateAPIView):
+    
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer
+
 
         

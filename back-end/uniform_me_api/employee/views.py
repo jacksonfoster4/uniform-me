@@ -20,8 +20,11 @@ class RetrieveEmployeeView(generics.RetrieveAPIView):
     serializer_class = EmployeeSerializer
 
 class CreateEmployeeView(generics.CreateAPIView):
-    """
-    Provides a get method handler.
-    """
+    
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+class UpdateEmployeeView(generics.UpdateAPIView):
+    
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer

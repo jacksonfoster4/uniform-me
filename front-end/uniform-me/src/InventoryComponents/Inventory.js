@@ -3,7 +3,8 @@ import React from 'react';
 import InventoryList from './InventoryList'
 import InventoryDetail from './InventoryDetail'
 import InventoryNew from './InventoryNew'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import InventoryEdit from './InventoryEdit'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 class Inventory extends React.Component {
     render(){
@@ -11,9 +12,10 @@ class Inventory extends React.Component {
             <div>
                 <BrowserRouter>
                     <Switch>
-                        <Route path="/inventory/new" component={InventoryNew} />
-                        <Route path="/inventory/:id" component={InventoryDetail} />
-                        <Route path="/inventory" component={InventoryList} />
+                        <Route exact path="/inventory/new" component={InventoryNew} />
+                        <Route exact path="/inventory/:id/edit" component={InventoryEdit} />
+                        <Route exact path="/inventory/:id" component={InventoryDetail} />
+                        <Route exact path="/inventory" component={InventoryList} />
                     </Switch>
                 </BrowserRouter>
             </div>

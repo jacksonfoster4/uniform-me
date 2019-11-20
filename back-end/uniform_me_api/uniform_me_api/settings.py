@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'inventory.apps.InventoryConfig',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
+    'django_pdb',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_pdb.middleware.PdbMiddleware',
 ]
 
 ROOT_URLCONF = 'uniform_me_api.urls'
@@ -137,7 +139,7 @@ CORS_ORIGIN_REGEX_WHITELIST = [
 ]
 LOGIN_REDIRECT_URL = '/api/users'
 REST_FRAMEWORK = {
-    "DATE_INPUT_FORMATS": ["%d-%m-%Y", "%m/%d/%Y","%m-%d-%Y"],
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y", "%m/%d/%Y","%m-%d-%Y", "%Y-%m-%d"],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',  # <-- And here
     ],

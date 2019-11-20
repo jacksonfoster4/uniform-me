@@ -19,8 +19,11 @@ class RetrieveItemView(generics.RetrieveAPIView):
     serializer_class = ItemSerializer
 
 class CreateItemView(generics.CreateAPIView):
-    """
-    Provides a get method handler.
-    """
+   
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
+class UpdateItemView(generics.UpdateAPIView):
+
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
