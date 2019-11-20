@@ -7,7 +7,7 @@ class Request(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, blank=False)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, blank=False)
     quantity = models.IntegerField()
-    notes = models.CharField(max_length=255, blank=True)
+    notes = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField()
     active = models.BooleanField(default=True)
 

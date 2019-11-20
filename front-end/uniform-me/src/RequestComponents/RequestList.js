@@ -14,9 +14,12 @@ class RequestList extends React.Component {
             <div>
             { this.state.requests ? 
                 this.state.requests.map( (request) => { return(
-                    <Link to={`/requests/${request['id']}`}>
-                        { request['item']['name'] }
-                    </Link>
+                    <div>
+                        <Link to={`/requests/${request['id']}`}>
+                            { request['item']['name'] }
+                        </Link><br></br>
+                    </div>
+                    
                 )})
                 : null}
             </div>

@@ -41,7 +41,7 @@ async function fetchAuthedUrl(path, method, body){
 
     })
     .then(res => {
-        if(!res.ok){
+        if([400, 401, 500].includes(res.status)){
             throw Error(res.statusText)
         }
         return res.json()

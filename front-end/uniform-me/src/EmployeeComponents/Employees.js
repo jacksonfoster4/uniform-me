@@ -2,7 +2,7 @@ import React from 'react';
 import EmployeeList from './EmployeeList'
 import EmployeeDetail from './EmployeeDetail'
 
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 class Employees extends React.Component {
     render(){
         return (
@@ -19,4 +19,4 @@ class Employees extends React.Component {
     }
   }
   
-  export default withRouter(Employees);
+  export default Employees;

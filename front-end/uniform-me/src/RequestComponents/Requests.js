@@ -2,7 +2,8 @@
 import React from 'react';
 import RequestList from './RequestList'
 import RequestDetail from './RequestDetail'
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom'
+import RequestNew from './RequestNew'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 class Requests extends React.Component {
     render(){
@@ -10,6 +11,7 @@ class Requests extends React.Component {
             <div>
                 <BrowserRouter>
                     <Switch>
+                        <Route path="/requests/new" component={RequestNew} />
                         <Route path="/requests/:id" component={RequestDetail} />
                         <Route path="/requests" component={RequestList} />
                     </Switch>
@@ -19,4 +21,4 @@ class Requests extends React.Component {
     }
   }
   
-  export default withRouter(Requests);
+  export default Requests;

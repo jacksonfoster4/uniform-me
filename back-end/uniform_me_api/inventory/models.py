@@ -4,12 +4,12 @@ from django.utils import timezone
 # Create your models here.
 class Item(models.Model):
     name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, blank=True)
-    size = models.CharField(max_length=255, blank=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    size = models.CharField(max_length=255, blank=True, null=True)
     last_modified=models.DateField(default=timezone.now())
     quantity = models.IntegerField()
-    need_to_reorder = models.BooleanField(default=False)
-    reorder_point = models.IntegerField(blank=True)
+    need_to_reorder = models.BooleanField(default=False, blank=True)
+    reorder_point = models.IntegerField(blank=True, null=True)
 
 
     def __str__(self):
@@ -18,17 +18,9 @@ class Item(models.Model):
         return self.name
 
 
-    def set_reorder_point(self):
-        # if user hasnt specified a reorder point, set it to 2 times the last inventory out event
-        if not self.reorder_point:
-            self.reorder_point = InventoryEvent.objects.filter(item=self)[0].change * 2
-
-
     def save(self, *args, **kwargs):
         if self.id:
             previous = Item.objects.get(id=self.id).quantity
-
-            self.set_reorder_point()
             
             if self.quantity != previous:
                 InventoryEvent(

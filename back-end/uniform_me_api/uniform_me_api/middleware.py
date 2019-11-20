@@ -19,12 +19,13 @@ class CheckForAlertsMiddleware():
         # check if items need to be reordered
         items = Item.objects.all()
         for item in items:
-            if item.quantity <= item.reorder_point:
-                item.need_to_reorder = True
-                item.save()
-            elif item.quantity > item.reorder_point:
-                item.need_to_reorder = False
-                item.save()
+            if item.reorder_point:
+                if item.quantity <= item.reorder_point:
+                    item.need_to_reorder = True
+                    item.save()
+                elif item.quantity > item.reorder_point:
+                    item.need_to_reorder = False
+                    item.save()
 
         response = self.get_response(request)
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import InventoryList from './InventoryList'
 import InventoryDetail from './InventoryDetail'
-import {BrowserRouter, Route, Switch, withRouter} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 class Inventory extends React.Component {
     render(){
@@ -20,4 +20,4 @@ class Inventory extends React.Component {
     }
   }
   
-  export default withRouter(Inventory);
+  export default Inventory;

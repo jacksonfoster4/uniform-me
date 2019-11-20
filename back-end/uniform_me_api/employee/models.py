@@ -4,11 +4,11 @@ from datetime import timedelta
 
 # Create your models here.
 class Employee(models.Model):
-    name = models.CharField(max_length=255, blank=False)
+    name = models.CharField(max_length=255)
     role = models.CharField(max_length=255, default='worker')
-    start_date = models.DateField()
+    start_date = models.DateField(blank=True, null=True)
     specialty = models.CharField(max_length=255)
-    has_thirty_day_alert = models.BooleanField(blank=True)
+    has_thirty_day_alert = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return self.name
