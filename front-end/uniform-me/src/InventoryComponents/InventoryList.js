@@ -14,11 +14,13 @@ class InventoryList extends React.Component {
             <div>
             { this.state.items ? 
                 this.state.items.map( (item) => { return(
-                    <Link to={`/inventory/${item['id']}`}>
+                    <div><Link to={`/inventory/${item['id']}`}>
                         {item['name']} - {item['quantity']}
-                    </Link>
+                    </Link><br></br></div>
                 )})
                 : null}
+                <br></br>
+                <Link to="inventory/new">Create New Item</Link>
             </div>
             
         );

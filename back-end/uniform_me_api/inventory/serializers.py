@@ -6,4 +6,5 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ("id", "name", "quantity", "need_to_reorder")
+
     

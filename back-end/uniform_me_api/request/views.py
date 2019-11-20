@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Request
-from .serializers import RequestSerializer, NewRequestSerializer
+from .serializers import RequestSerializer, ListRequestSerializer
 from employee.models import Employee
 from inventory.models import Item
 
@@ -13,21 +13,21 @@ class ListRequestsView(generics.ListAPIView):
     Provides a get method handler.
     """
     queryset = Request.objects.all()
-    serializer_class = RequestSerializer
+    serializer_class = ListRequestSerializer
 
 class RetrieveRequestView(generics.RetrieveAPIView):
     """
     Provides a get method handler.
     """
     queryset = Request.objects.all()
-    serializer_class = RequestSerializer
+    serializer_class = ListRequestSerializer
 
 class CreateRequestView(generics.CreateAPIView):
     """
     Provides a get method handler.
     """
     queryset = Request.objects.all()
-    serializer_class = NewRequestSerializer
+    serializer_class = RequestSerializer
 
 
         

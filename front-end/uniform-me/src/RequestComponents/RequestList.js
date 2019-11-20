@@ -22,6 +22,8 @@ class RequestList extends React.Component {
                     
                 )})
                 : null}
+                <br></br>
+                <Link to="requests/new">Create New Request</Link>
             </div>
             
         );

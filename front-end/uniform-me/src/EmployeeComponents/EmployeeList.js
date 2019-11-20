@@ -14,11 +14,13 @@ class EmployeeList extends React.Component {
             <div>
             { this.state.employees ? 
                 this.state.employees.map( (employee) => { return(
-                    <Link to={`/employees/${employee['id']}`}>
+                    <div><Link to={`/employees/${employee['id']}`}>
                         {employee['name']} - {employee['role']}
-                    </Link>
+                    </Link><br></br></div>
                 )})
                 : null}
+                <br></br>
+                <Link to="employees/new">Create New Employee</Link>
             </div>
             
         );

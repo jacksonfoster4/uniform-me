@@ -24,6 +24,7 @@ class RequestNew extends React.Component {
         }
         console.log(body)
         fetchAuthedUrl("requests/new/", "POST", body).then( (result) => {
+            this.props.history.push("/requests")
         })
     }
     render(){

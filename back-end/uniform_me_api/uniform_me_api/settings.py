@@ -137,6 +137,7 @@ CORS_ORIGIN_REGEX_WHITELIST = [
 ]
 LOGIN_REDIRECT_URL = '/api/users'
 REST_FRAMEWORK = {
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y", "%m/%d/%Y","%m-%d-%Y"],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',  # <-- And here
     ],
