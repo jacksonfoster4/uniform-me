@@ -1,6 +1,8 @@
 import React from 'react'
 import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
+import NotFound from '../NotFound'
+import Loading from '../Loading'
 
 class EmployeeDetail extends React.Component {
     state ={
@@ -19,9 +21,7 @@ class EmployeeDetail extends React.Component {
     render(){
         if(this.state.loading){
             return (
-                <div>
-                    <div>Loading...</div>
-                </div>
+                <Loading />
             )
         }
         return (
@@ -32,7 +32,7 @@ class EmployeeDetail extends React.Component {
                     <div>
                         {key} : {this.state.employee[key]}
                     </div>
-                )}) : null 
+                )}) : <NotFound /> 
                 }
                 <br></br>
                 <Link to={`${this.state.id}/edit`}>Edit Employee</Link>

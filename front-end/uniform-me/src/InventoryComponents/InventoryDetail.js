@@ -2,6 +2,7 @@ import React from 'react'
 import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
 import Loading from '../Loading'
+import NotFound from '../NotFound'
 
 class InventoryDetail extends React.Component {
     state ={
@@ -20,7 +21,9 @@ class InventoryDetail extends React.Component {
     render(){
         if(this.state.loading){
             return (
-                <Loading />
+                <div>
+                    <Loading />
+                </div>
             )
         }
         return (
@@ -29,7 +32,7 @@ class InventoryDetail extends React.Component {
                     <h1 className="display-4">
                         {this.state.item['name']}
                     </h1>
-                : null 
+                : <NotFound /> 
                 }
                 <br></br>
                 <Link to={`${this.state.id}/edit`}>Edit Item</Link>

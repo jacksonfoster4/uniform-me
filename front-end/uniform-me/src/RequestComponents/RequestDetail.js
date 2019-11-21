@@ -1,6 +1,8 @@
 import React from 'react'
 import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
+import NotFound from '../NotFound'
+import Loading from '../Loading'
 
 class RequestDetail extends React.Component {
     state = {
@@ -19,9 +21,7 @@ class RequestDetail extends React.Component {
     render(){
         if(this.state.loading){
             return (
-                <div>
-                    <div>Loading...</div>
-                </div>
+                <Loading />
             )
         }
         return (
@@ -31,12 +31,13 @@ class RequestDetail extends React.Component {
                         {this.state.request['date']} - 
                         {this.state.request['employee']['name']} - 
                         {this.state.request['item']['name'] } - 
-                        {this.state.request['quantity'] } - 
+                        {this.state.request['quantity'] }
+                        <br></br>
+                        <Link to={`${this.state.id}/edit`}>Edit Item</Link>
                     </div>
-                    : null
+                    : <NotFound />
                 }
-                <br></br>
-                <Link to={`${this.state.id}/edit`}>Edit Item</Link>
+                
             </div>
         )
     }

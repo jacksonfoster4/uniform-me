@@ -1,7 +1,6 @@
 import React from 'react';
 import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
-import { InventoryHeading } from './Inventory'
 import Loading from '../Loading'
 
 class InventoryList extends React.Component {
@@ -20,14 +19,12 @@ class InventoryList extends React.Component {
         if(this.state.loading){
             return (
                 <div>
-                    <InventoryHeading />
                     <Loading />
                 </div>
             )
         }
         return (
             <div>
-                <InventoryHeading />
                 <div className="container">
                     <div className="row">
                     { this.state.items ? 
