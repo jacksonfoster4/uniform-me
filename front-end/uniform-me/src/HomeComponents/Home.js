@@ -1,6 +1,7 @@
 import React from 'react';
 import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
+import Loading from '../Loading'
 
 class Home extends React.Component {
     state = {
@@ -17,7 +18,9 @@ class Home extends React.Component {
     render(){
         if(this.state.loading){
             return (
-                <div>Loading...</div>
+                <div className="mt-4 pt-4 ">
+                    <Loading />
+                </div>
             )
         }
         return (

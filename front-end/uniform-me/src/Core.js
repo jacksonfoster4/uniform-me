@@ -12,7 +12,7 @@ function Core() {
     return (
         <div>
             <Header />
-            <div className="container px-5 pt-2">
+            <div className="">
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/inventory" component={Inventory} />

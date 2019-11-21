@@ -3,17 +3,27 @@ import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
 
 class EmployeeDetail extends React.Component {
-    state ={}
+    state ={
+        loading: true
+    }
     componentDidMount(){
         let id = this.props.match.params.id
         fetchUrl(`employees/${id}`).then( (result) => {
             this.setState({
                 id: id,
                 employee: result,
+                loading: false
             })
         })
     }
     render(){
+        if(this.state.loading){
+            return (
+                <div>
+                    <div>Loading...</div>
+                </div>
+            )
+        }
         return (
             <div>
                 { this.state.employee ?

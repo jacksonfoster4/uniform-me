@@ -3,7 +3,6 @@ import fetchUrl from '../uniform-me-client'
 import { withRouter } from 'react-router-dom'
 
 class InventoryNew extends React.Component {
-    
     submit = (e) => {
         e.preventDefault()
         let body = {}

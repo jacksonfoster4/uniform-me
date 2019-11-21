@@ -4,7 +4,7 @@ import InventoryList from './InventoryList'
 import InventoryDetail from './InventoryDetail'
 import InventoryNew from './InventoryNew'
 import InventoryEdit from './InventoryEdit'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 class Inventory extends React.Component {
     render(){
@@ -23,5 +23,17 @@ class Inventory extends React.Component {
         );
     }
   }
-  
-  export default Inventory;
+
+  function InventoryHeading(){
+    return (
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading mb-4 ">Inventory</h1>
+                <Link to="inventory/new" className="btn btn-warning mt-3">Create New Item</Link>
+            </div>
+        </section>
+    )
+}
+
+export default Inventory;
+export { InventoryHeading }

@@ -3,13 +3,18 @@ import fetchUrl from '../uniform-me-client'
 import { withRouter } from 'react-router-dom'
 
 class RequestNew extends React.Component {
-    state = {}
+    state = {
+        loading: true
+    }
     componentDidMount(){
         fetchUrl("inventory/",).then( (result) => {
             this.setState({ items: result})
         })
         fetchUrl("employees/",).then( (result) => {
-            this.setState({ employees: result})
+            this.setState({ 
+                employees: result,
+                loading: false
+            })
         })
     }
 
@@ -31,6 +36,13 @@ class RequestNew extends React.Component {
         })
     }
     render(){
+        if(this.state.loading){
+            return (
+                <div>
+                    <div>Loading...</div>
+                </div>
+            )
+        }
         return (
             <form onSubmit={ this.submit }>
                 <div className="form-group">

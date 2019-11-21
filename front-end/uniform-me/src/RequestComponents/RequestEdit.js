@@ -9,12 +9,11 @@ class RequestEdit extends React.Component {
         fetchUrl(`requests/${id}`).then((result) => {
             this.setState({
                 url: `requests/${id}/edit/`,
-                request: result
+                request: result,
             })
         })
     }
     render(){
-        console.log(this.state)
         return(
             <RequestNew {...this.state.request} url={this.state.url} method="PUT" />
         )
