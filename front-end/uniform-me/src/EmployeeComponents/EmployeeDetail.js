@@ -1,12 +1,12 @@
 import React from 'react'
-import fetchAuthedUrl from '../uniform-me-client'
+import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
 
 class EmployeeDetail extends React.Component {
     state ={}
     componentDidMount(){
         let id = this.props.match.params.id
-        fetchAuthedUrl(`employees/${id}`).then( (result) => {
+        fetchUrl(`employees/${id}`).then( (result) => {
             this.setState({
                 id: id,
                 employee: result,

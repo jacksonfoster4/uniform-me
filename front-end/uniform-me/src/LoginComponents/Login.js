@@ -1,6 +1,6 @@
 import React from 'react';
 import Cookie from 'js-cookie'
-import { fetchUrl } from '../uniform-me-client'
+import fetchUrl from '../uniform-me-client'
 
 class Login extends React.Component {
     

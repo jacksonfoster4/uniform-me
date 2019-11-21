@@ -56,5 +56,5 @@ function getAuthToken(){
     return Cookies.get('authToken')
 }
 
-export default fetchAuthedUrl
-export { fetchUrl }
+export default fetchUrl
+export { fetchAuthedUrl }

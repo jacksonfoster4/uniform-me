@@ -1,12 +1,12 @@
 import React from 'react'
 import RequestNew from './RequestNew'
-import fetchAuthedUrl from '../uniform-me-client'
+import fetchUrl from '../uniform-me-client'
 
 class RequestEdit extends React.Component {
     state={}
     componentDidMount(){
         let id = this.props.match.params.id
-        fetchAuthedUrl(`requests/${id}`).then((result) => {
+        fetchUrl(`requests/${id}`).then((result) => {
             this.setState({
                 url: `requests/${id}/edit/`,
                 request: result

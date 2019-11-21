@@ -1,12 +1,12 @@
 import React from 'react'
 import InventoryNew from './InventoryNew'
-import fetchAuthedUrl from '../uniform-me-client'
+import fetchUrl from '../uniform-me-client'
 
 class InventoryEdit extends React.Component {
     state={}
     componentDidMount(){
         let id = this.props.match.params.id
-        fetchAuthedUrl(`inventory/${id}`).then((result) => {
+        fetchUrl(`inventory/${id}`).then((result) => {
             this.setState({
                 url: `inventory/${id}/edit/`,
                 item: result

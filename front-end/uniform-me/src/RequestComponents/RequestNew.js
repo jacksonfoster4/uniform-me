@@ -1,14 +1,14 @@
 import React from 'react'
-import fetchAuthedUrl from '../uniform-me-client'
+import fetchUrl from '../uniform-me-client'
 import { withRouter } from 'react-router-dom'
 
 class RequestNew extends React.Component {
     state = {}
     componentDidMount(){
-        fetchAuthedUrl("inventory/",).then( (result) => {
+        fetchUrl("inventory/",).then( (result) => {
             this.setState({ items: result})
         })
-        fetchAuthedUrl("employees/",).then( (result) => {
+        fetchUrl("employees/",).then( (result) => {
             this.setState({ employees: result})
         })
     }
@@ -26,7 +26,7 @@ class RequestNew extends React.Component {
         let url = this.props.url ? this.props.url : "requests/new/"
         let method = this.props.method? this.props.method : "POST"
 
-        fetchAuthedUrl(url, method, body).then( (result) => {
+        fetchUrl(url, method, body).then( (result) => {
             this.props.history.push("/requests")
         })
     }

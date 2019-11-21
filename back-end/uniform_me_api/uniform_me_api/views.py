@@ -37,12 +37,17 @@ class Home(APIView):
         tmp = {}
         negative_delta_events = list(filter(lambda x: x.delta() < 0, InventoryEvent.objects.all()))
         for event in negative_delta_events:
-            name = event.item.name
-            if name in tmp:
-                tmp[name] += 1
+            item = event.item
+            if item.name in tmp:
+                tmp[item.name][0] += 1
             else:
-                tmp[name] = 1
-        return sorted( tmp, key=tmp.get )[0]
+                tmp[item.name] = [1, item.id]
+        if tmp:
+            def qty(x):
+                return tmp[x][0]
+            most_requested_item = sorted( tmp, key=qty )[0]
+            item_id = tmp[most_requested_item][1]
+            return [most_requested_item, item_id] 
 
 
     def get_thirty_day_alerts(self):
