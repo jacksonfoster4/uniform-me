@@ -21,7 +21,12 @@ class EmployeesNew extends React.Component {
         let method = this.props.method? this.props.method : "POST"
 
         fetchUrl(url, method, body).then( (result) => {
-            this.props.history.push("/employees")
+            if(this.props.match.params.id){
+                this.props.history.push(`employees/${this.props.match.params.id}`)
+            }
+            else {
+                this.props.history.push("/employees")
+            }
         })
     }
     render(){

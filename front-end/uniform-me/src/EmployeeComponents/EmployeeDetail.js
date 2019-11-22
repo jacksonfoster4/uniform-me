@@ -39,8 +39,9 @@ class EmployeeDetail extends React.Component {
                                     {this.state.employee.role}
                                 </div>
                                     { this.state.employee.start_date ? <div className="display-4 text-left">{this.state.employee.start_date}</div> : null }
-                                     { this.state.employee.start_date ? <div><h3>Role: </h3>{this.state.employee.start_date}</div> : null }
+                                     { this.state.employee.start_date ? <div><h3>Start Date: </h3>{this.state.employee.start_date}</div> : null }
                                     { this.state.employee.size ? <div><h3>Size: </h3>{this.state.employee.size}</div>  : null }
+                                    { this.state.employee.notes ? <div><h3>Notes: </h3>{this.state.employee.notes}</div>  : null }
                                 <Link to={`/employees/${this.state.employee.id}/edit`} className="btn text-left mt-3 btn-secondary">Edit Employee</Link>
                             </div>
                             <div class="col-md-6">

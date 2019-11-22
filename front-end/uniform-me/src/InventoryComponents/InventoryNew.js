@@ -12,13 +12,20 @@ class InventoryNew extends React.Component {
             let value = el.value
             el.type == "checkbox" ? body[key] = el.checked : body[key] = value
         }
-        console.log(body)
+
         // update view also uses this component
         let url = this.props.url ? this.props.url : "inventory/new/"
         let method = this.props.method? this.props.method : "POST"
 
         fetchUrl(url, method, body).then( (result) => {
-            this.props.history.push("/inventory")
+            // if editing existing
+            if(this.props.match.params.id){
+                this.props.history.push(`/inventory/${this.props.match.params.id}`)
+            }
+            else {
+                // if creating new
+                this.props.history.push(`/inventory`)
+            }
         })
     }
     render(){

@@ -17,25 +17,10 @@ class ListItemsView(generics.ListAPIView):
 
 class RetrieveItemView(APIView):
    def get(self, request, *args, **kwargs):
-        item = Item.objects.filter(id=kwargs['pk'])
+        item = format_retrieve_response_with_foreign_fields(kwargs['pk'])
         if item:
-            item = item[0]
-            events = list(InventoryEvent.objects.filter(item=item).values())
-            requests = list(Request.objects.filter(item=item).values())
-            is_active = lambda x: x['active']
-            requests.sort(key=is_active)            
-
-            for i, request in enumerate(requests):
-                employee = Employee.objects.filter(id=request['employee_id']).values()
-                request['employee'] = employee[0]
-
-                requests[i].pop("item_id", None)
-                requests[i] = request
-
-            item = item.__dict__
-            item.pop('_state', None)
-            item['events'] = events
-            item['requests'] = requests
+            dist_totals = distribution_totals(kwargs['pk'])
+            item['distribution_totals'] = dist_totals
             return Response(item, status=200)
         return Response(None, status=404)
 
@@ -53,3 +38,35 @@ class DestroyItemView(generics.DestroyAPIView):
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+def format_retrieve_response_with_foreign_fields(item_pk):
+    item = Item.objects.filter(id=item_pk)
+    if item:
+        item = item[0]
+        events = list(InventoryEvent.objects.filter(item=item).values())
+        requests = list(Request.objects.filter(item=item).values())
+        is_active = lambda x: x['active']
+        requests.sort(key=is_active)            
+
+        for i, request in enumerate(requests):
+            employee = Employee.objects.filter(id=request['employee_id']).values()
+            request['employee'] = employee[0]
+
+            requests[i].pop("item_id", None)
+            requests[i] = request
+
+        item = item.__dict__
+        item.pop('_state', None)
+        events.reverse()
+        item['events'] = events
+        item['requests'] = requests
+        return item
+    return False
+
+def distribution_totals(item_pk):
+    item = Item.objects.filter(id=item_pk)[0]
+    total = 0
+    negative_delta_events = list(filter(lambda x: x.delta() < 0, InventoryEvent.objects.filter(item=item)))
+    for event in negative_delta_events:
+        total += abs( event.delta() )
+    return total

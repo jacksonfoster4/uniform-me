@@ -32,7 +32,12 @@ class RequestNew extends React.Component {
         let method = this.props.method? this.props.method : "POST"
 
         fetchUrl(url, method, body).then( (result) => {
-            this.props.history.push("/requests")
+            if(this.props.match.params.id){
+                this.props.history.push(`/requests/${this.props.match.params.id}`)
+            }
+            else {
+                this.props.history.push("/requests")
+            }
         })
     }
     render(){
