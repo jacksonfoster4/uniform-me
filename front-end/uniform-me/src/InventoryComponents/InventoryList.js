@@ -2,6 +2,7 @@ import React from 'react';
 import fetchUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
 import Loading from '../Loading'
+import NotFound from '../NotFound'
 
 class InventoryList extends React.Component {
     state = {
@@ -46,7 +47,7 @@ class InventoryList extends React.Component {
                             </div>
                         </div>
                         )})
-                        : null }
+                        : <NotFound /> }
                     </div>
                 </div>
             </div>        

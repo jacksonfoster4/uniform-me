@@ -3,21 +3,19 @@ import EmployeeList from './EmployeeList'
 import EmployeeDetail from './EmployeeDetail'
 import EmployeeNew from './EmployeeNew'
 import EmployeeEdit from './EmployeeEdit'
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Link, withRouter } from 'react-router-dom'
 
 class Employees extends React.Component {
     render(){
         return (
             <div>
-                <BrowserRouter>
-                    <EmployeesHeading />
-                    <Switch>
-                        <Route exact path="/employees/new" component={EmployeeNew} />
-                        <Route exact path="/employees/:id/edit" component={EmployeeEdit} />
-                        <Route exact path="/employees/:id" component={EmployeeDetail} />
-                        <Route path="/employees" component={EmployeeList} />
-                    </Switch>
-                </BrowserRouter>
+                <EmployeesHeading />
+                <Switch>
+                    <Route path="/employees/new" component={EmployeeNew} />
+                    <Route path="/employees/:id/edit" component={EmployeeEdit} />
+                    <Route path="/employees/:id" component={EmployeeDetail} />
+                    <Route path="/employees" component={EmployeeList} />
+                </Switch>
             </div>
             
         );

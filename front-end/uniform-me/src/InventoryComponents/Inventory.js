@@ -10,17 +10,14 @@ class Inventory extends React.Component {
     render(){
         return (
             <div>
-                <BrowserRouter>
-                    <InventoryHeading />
-                    <Switch>
-                        <Route path="/inventory/new" component={InventoryNew} />
-                        <Route exact path="/inventory/:id/edit" component={InventoryEdit} />
-                        <Route exact path="/inventory/:id" component={InventoryDetail} />
-                        <Route path="/inventory" component={InventoryList} />
-                    </Switch>
-                </BrowserRouter>
+                <InventoryHeading />
+                <Switch>
+                    <Route path="/inventory/new" component={InventoryNew} />
+                    <Route exact path="/inventory/:id/edit" component={InventoryEdit} />
+                    <Route exact path="/inventory/:id" component={InventoryDetail} />
+                    <Route path="/inventory" component={InventoryList} />
+                </Switch>
             </div>
-            
         );
     }
   }

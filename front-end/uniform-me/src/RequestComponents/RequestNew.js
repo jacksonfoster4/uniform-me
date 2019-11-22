@@ -44,45 +44,70 @@ class RequestNew extends React.Component {
             )
         }
         return (
-            <form onSubmit={ this.submit }>
-                <div className="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input required type="number" defaultValue={this.props.quantity} className="form-control" name="quantity" id="quantity" placeholder="quantity" />
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="display-4 text-left pb-4">{this.props.item ? <span>Edit </span> : <span>New </span>}Request</div>
+                        <form className="text-left"onSubmit={ this.submit }>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Item</span>
+                                        </div>
+                                        <select required name="item" defaultValue={this.props.item ? this.props.item['id'] : null} className="form-control" id="item">
+                                            { this.state.items ? 
+                                                this.state.items.map( (item, index) => { return (
+                                                    <option 
+                                                    selected={this.props.item ? this.props.item['id'] == item['id'] : false} 
+                                                    value={item['id']}> 
+                                                        {item['name']} 
+                                                    </option>
+                                                )})
+                                            : null }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Employee</span>
+                                        </div>
+                                        <select required name="employee" defaultValue={this.props.employee ? this.props.employee['id'] : null} className="form-control" id="employee">
+                                            { this.state.employees ? 
+                                                this.state.employees.map( (employee, index) => { return (
+                                                    <option 
+                                                    selected={this.props.employee ? this.props.employee['id'] == employee['id'] : false} 
+                                                    value={employee['id']}>
+                                                        {employee['name']}
+                                                    </option>
+                                                )})
+                                            : null }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Quantity</span>
+                                        </div>
+                                        <input type="number" class="form-control" name="quantity" defaultValue={this.props.quantity} placeholder="Quantity" aria-label="Quantity" aria-describedby="basic-addon1" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Date</span>
+                                        </div>
+                                        <input type="date" class="form-control" name="date" defaultValue={this.props.date} placeholder="Quantity" aria-label="Quantity" aria-describedby="basic-addon1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input required type="date" className="form-control" defaultValue={this.props.date} name="date" id="date" placeholder="date" />
-                </div>
-                <div className="form-group">
-                    <label for="exampleFormControlSelect1">Example select</label>
-                    <select required name="employee" defaultValue={this.props.employee ? this.props.employee['id'] : null} className="form-control" id="employee">
-                    { this.state.employees ? 
-                        this.state.employees.map( (employee, index) => { return (
-                            <option 
-                            selected={this.props.employee ? this.props.employee['id'] == employee['id'] : false} 
-                            value={employee['id']}>
-                                {employee['name']}
-                            </option>
-                        )})
-                    : null }
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label for="exampleFormControlSelect2">Example multiple select</label>
-                    <select required name="item" defaultValue={this.props.item ? this.props.item['id'] : null} className="form-control" id="item">
-                    { this.state.items ? 
-                        this.state.items.map( (item, index) => { return (
-                            <option 
-                            selected={this.props.item ? this.props.item['id'] == item['id'] : false} 
-                            value={item['id']}> 
-                                {item['name']} 
-                            </option>
-                        )})
-                    : null }
-                    </select>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            </div>
         )
     }
 }

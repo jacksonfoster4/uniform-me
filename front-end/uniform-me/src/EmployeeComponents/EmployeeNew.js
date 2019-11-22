@@ -26,29 +26,50 @@ class EmployeesNew extends React.Component {
     }
     render(){
         return (
-            <form onSubmit={ this.submit }>
-                <div className="form-group">
-                    <label for="exampleFormControlInput1">name</label>
-                    <input required type="text" defaultValue={this.props.name} className="form-control" name="name" id="name" placeholder="emmployee name" />
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="display-4 text-left pb-4">{this.props.name ? <span>Edit </span> : <span>New </span>}Employee</div>
+                        <form className="text-left"onSubmit={ this.submit }>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Employee Name</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="name"defaultValue={this.props.name} placeholder="Employee Name" aria-label="Employee Name" aria-describedby="basic-addon1" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Role</span>
+                                        </div>
+                                        <input type="text" class="form-control" name="role"defaultValue={this.props.role} placeholder="Role" aria-label="Role" aria-describedby="basic-addon1" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Start Date</span>
+                                        </div>
+                                        <input type="date" class="form-control" name="start_date" defaultValue={this.props.start_date} placeholder="Start Date" aria-label="Start Date" aria-describedby="basic-addon1" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Notes</span>
+                                        </div>
+                                        <textarea class="form-control" name="notes" defaultValue={this.props.notes} placeholder="Notes" aria-label="Notes" aria-describedby="basic-addon1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label for="exampleFormControlInput1">role</label>
-                    <input required type="text" defaultValue={this.props.role} className="form-control" name="role" id="role" placeholder="role" />
-                </div>
-                <div className="form-group">
-                    <label for="exampleFormControlSelect1">start date</label>
-                    <input type="date" defaultValue="null" defaultValue={this.props.start_date}name="start_date"/>
-                </div>
-                <div className="form-group">
-                    <label for="exampleFormControlInput1">role</label>
-                    <select type="text" className="form-control"defaultValue={this.props.specialty} name="specialty" id="specialty" placeholder="specialty">
-                        <option value="soft_story">Soft Story</option>
-                        <option value="houses">Houses</option>
-                        <option value="">N/A</option>
-                    </select>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            </div>
         )
     }
 }

@@ -15,7 +15,6 @@ class Requests extends React.Component {
                     <Switch>
                         <Route path="/requests/new" component={RequestNew} />
                         <Route path="/requests/:id/edit" component={RequestEdit} />
-                        <Route path="/requests/:id" component={RequestDetail} />
                         <Route path="/requests" component={RequestList} />
                     </Switch>
                 </BrowserRouter>

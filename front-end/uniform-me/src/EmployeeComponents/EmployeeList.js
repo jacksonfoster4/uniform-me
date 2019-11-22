@@ -2,7 +2,6 @@ import React from 'react';
 import fetchUrl from '../uniform-me-client'
 import {Link} from 'react-router-dom'
 import Loading from '../Loading'
-import NotFound from '../NotFound';
 
 class EmployeeList extends React.Component {
     state = {
@@ -34,7 +33,7 @@ class EmployeeList extends React.Component {
                             <div className="card mb-4 shadow-sm">
                                 <div className="card-body">
                                     <h5 className="card-heading text-left">{ employee['name']}
-                                        { employee['requests'] ? <span class="badge card-text ml-2 badge-danger">REQUESTS</span> : null}
+                                        { employee['requests'].length ? <span class="badge card-text badge-danger">REQUESTS</span> : null}
                                     </h5>
                                     <p className="card-text text-left"><strong>Role: </strong>{employee['role']}</p>
                                     <div className="d-flex justify-content-between align-items-center">
@@ -47,7 +46,7 @@ class EmployeeList extends React.Component {
                             </div>
                         </div>
                         )})
-                        : <NotFound /> }
+                        : null }
                     </div>
                 </div>
             </div>        

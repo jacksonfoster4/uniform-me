@@ -11,7 +11,6 @@ class Home extends React.Component {
         fetchUrl("home").then( (result) => {
             this.setState(result)
             this.setState({loading: false})
-
         })
     }
     
