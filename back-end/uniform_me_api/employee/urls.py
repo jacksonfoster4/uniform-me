@@ -6,4 +6,6 @@ urlpatterns = [
     path('<int:pk>', views.RetrieveEmployeeView.as_view()),
     path('new/', views.CreateEmployeeView.as_view()),
     path('<int:pk>/edit/', views.UpdateEmployeeView.as_view()),
+    path('<int:pk>/delete/', views.DestroyEmployeeView.as_view()),
+
 ]

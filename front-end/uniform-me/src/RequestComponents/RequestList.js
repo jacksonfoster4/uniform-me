@@ -1,9 +1,8 @@
 import React from 'react';
 import fetchUrl from '../uniform-me-client'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import Loading from '../Loading'
 import NotFound from '../NotFound'
-import RequestNew from './RequestNew'
 
 class RequestList extends React.Component {
     state = {
@@ -24,6 +23,14 @@ class RequestList extends React.Component {
                 })
             })
         )
+    }
+    delete = (request) => {
+        if(window.confirm("Are you sure you want to delete this request?")){
+            fetchUrl(`/requests/${request.id}/delete/`, "DELETE").then(()=>{
+                this.props.history.push("/requests")
+                window.location.reload()}
+            )
+        } 
     }
     componentDidMount(){
         fetchUrl("requests").then( (result) => {
@@ -57,12 +64,15 @@ class RequestList extends React.Component {
                                     <p className="card-text text-left"><strong>Request by: </strong>{request['employee']['name']}</p>
                                     <p className="card-text text-left"><strong>Requested on: </strong>{request['date']}</p>
                                     <div className="d-flex justify-content-between align-items-center">
-                                        <Link to={`/requests/${request['id']}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
+                                        <div className="btn btn-group">
+                                        <Link to={`/requests/${request['id']}/edit`} className="btn btn-sm btn-primary">Edit</Link>
                                         { request.active ? 
-                                            <button onClick={ () => this.toggleActive(request) }className="btn btn-success">Fulfill</button>
+                                            <button onClick={ () => this.toggleActive(request) }className="btn btn-sm btn-success">Fulfill</button>
                                             :
-                                            <button onClick={ () => this.toggleActive(request) }className="btn btn-danger">Make Active</button>
+                                            <button onClick={ () => this.toggleActive(request) }className="btn btn-sm btn-warning">Make Active</button>
                                         }
+                                        </div>
+                                        <button onClick={ () => this.delete(request) }className="btn btn-sm btn-danger">Delete</button>           
                                     </div>
                                 </div>
                             </div>
@@ -76,4 +86,4 @@ class RequestList extends React.Component {
     }
   }
   
-  export default RequestList;
+  export default withRouter(RequestList);

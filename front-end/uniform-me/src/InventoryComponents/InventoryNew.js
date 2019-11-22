@@ -26,7 +26,7 @@ class InventoryNew extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="display-4 text-left pb-4">{this.props.item ? <span>Edit </span> : <span>New </span>}Item</div>
+                        <div className="display-4 text-left pb-4">{this.props.name ? <span>Edit </span> : <span>New </span>}Item</div>
                         <form className="text-left"onSubmit={ this.submit }>
                             <div className="row">
                                 <div className="col-md-6">

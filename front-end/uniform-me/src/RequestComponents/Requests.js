@@ -1,7 +1,6 @@
 
 import React from 'react';
 import RequestList from './RequestList'
-import RequestDetail from './RequestDetail'
 import RequestNew from './RequestNew'
 import RequestEdit from './RequestEdit'
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'

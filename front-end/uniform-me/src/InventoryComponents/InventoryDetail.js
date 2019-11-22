@@ -18,6 +18,7 @@ class InventoryDetail extends React.Component {
             })
         })
     }
+    
     render(){
         if(this.state.loading){
             return (
@@ -66,6 +67,41 @@ class InventoryDetail extends React.Component {
                                             <td>{request.date}</td>
                                             <td>{request.employee.name}</td>
                                             <td>{request.quantity}</td>
+                                          </tr>
+                                      )})}
+                                    </tbody>
+                                  </table>
+                                  </div>
+                                : null}
+                                <Link to="/requests/new" className="btn btn-primary">New Request</Link>
+                            </div>
+                            <div className="">
+                            { this.state.item.events.length ? 
+                                <div>
+                                    <h3 className="display-4">Activity</h3>
+                                    <table class="rounded table">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Incoming/Outgoing</th>
+                                        <th scope="col">Start Quantity</th>
+                                        <th scope="col">End Quantity</th>
+                                        <th scope="col">Change</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      { this.state.item.events.map( (event) => {return (
+                                          <tr className="">
+                                            <td>{event.date}</td>
+                                            { 
+                                            event.start_quantity > event.end_quantity ? 
+                                            <td><span className="badge badge-warning">Outgoing</span></td> 
+                                            : 
+                                            <td><span className="badge badge-info">Incoming</span></td>
+                                            }
+                                            <td>{event.start_quantity}</td>
+                                            <td>{event.end_quantity}</td>
+                                            <td>{event.end_quantity - event.start_quantity}</td>
                                           </tr>
                                       )})}
                                     </tbody>

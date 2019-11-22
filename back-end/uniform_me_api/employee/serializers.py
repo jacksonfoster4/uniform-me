@@ -6,7 +6,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ("id", "name", "role", "start_date", "specialty")
+        fields = ("id", "name", "role", "start_date", "specialty", "notes")
 
 class RequestsForEmployee(serializers.ModelSerializer):
     class Meta:

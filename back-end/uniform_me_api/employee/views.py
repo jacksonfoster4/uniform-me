@@ -25,21 +25,24 @@ class ListEmployeesView(APIView):
 
 class RetrieveEmployeeView(APIView):
    def get(self, request, *args, **kwargs):
-        employee = Employee.objects.filter(id=kwargs['pk'])[0]
-        requests = list(Request.objects.filter(employee=employee).values())
-        is_active = lambda x: x['active']
-        requests.sort(key=is_active)
-        for i, request in enumerate(requests):
-            item = Item.objects.filter(id=request['item_id']).values()
-            request['item'] = item[0]
-            
-            requests[i].pop("item_id", None)
-            requests[i] = request
-        employee = employee.__dict__
-        employee.pop('_state', None)
-        employee['requests'] = requests
-        print(employee)
-        return Response(employee, status=200)
+        employee = Employee.objects.filter(id=kwargs['pk'])
+        if employee:
+            employee = employee[0]
+            requests = list(Request.objects.filter(employee=employee).values())
+            is_active = lambda x: x['active']
+            requests.sort(key=is_active)
+            for i, request in enumerate(requests):
+                item = Item.objects.filter(id=request['item_id']).values()
+                request['item'] = item[0]
+                
+                requests[i].pop("item_id", None)
+                requests[i] = request
+            employee = employee.__dict__
+            employee.pop('_state', None)
+            employee['requests'] = requests
+            print(employee)
+            return Response(employee, status=200)
+        return Response(None, status=404)
 
 class CreateEmployeeView(generics.CreateAPIView):
     
@@ -47,6 +50,11 @@ class CreateEmployeeView(generics.CreateAPIView):
     serializer_class = EmployeeSerializer
 
 class UpdateEmployeeView(generics.UpdateAPIView):
+    
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+class DestroyEmployeeView(generics.DestroyAPIView):
     
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer

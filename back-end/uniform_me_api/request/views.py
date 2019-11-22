@@ -34,5 +34,10 @@ class UpdateRequestView(generics.UpdateAPIView):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
+class DestroyRequestView(generics.DestroyAPIView):
+    
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer
+
 
         
