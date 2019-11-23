@@ -39,8 +39,8 @@ class RetrieveEmployeeView(APIView):
                 requests[i] = request
             employee = employee.__dict__
             employee.pop('_state', None)
+            requests.reverse()
             employee['requests'] = requests
-            print(employee)
             return Response(employee, status=200)
         return Response(None, status=404)
 

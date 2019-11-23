@@ -29,6 +29,15 @@ class CreateItemView(generics.CreateAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
+    def post(self, request):
+        if not request.data['reorder_point']:
+            request.data['reorder_point'] = 0
+        s = ItemSerializer(data=request.data)
+        if s.is_valid():
+            s.save()
+            return Response(s.data, status=200)
+        return Response(s.errors, status=400)    
+
 class UpdateItemView(generics.UpdateAPIView):
 
     queryset = Item.objects.all()

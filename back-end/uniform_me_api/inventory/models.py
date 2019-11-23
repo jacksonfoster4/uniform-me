@@ -6,10 +6,11 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255, blank=True, null=True)
     size = models.CharField(max_length=255, blank=True, null=True)
-    last_modified=models.DateField(default=timezone.now())
+    last_modified=models.DateField(blank=True, null=True)
     quantity = models.IntegerField()
     need_to_reorder = models.BooleanField(default=False, blank=True)
-    reorder_point = models.IntegerField(blank=True, null=True)
+    reorder_point = models.IntegerField(default=0, null=True, blank=True)
+    notes = models.TextField(blank=True, null=True)
 
 
     def __str__(self):
