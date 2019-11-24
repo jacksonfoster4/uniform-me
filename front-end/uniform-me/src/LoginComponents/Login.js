@@ -1,6 +1,6 @@
 import React from 'react';
 import Cookie from 'js-cookie'
-import fetchUrl from '../uniform-me-client'
+import {fetchUrl} from '../uniform-me-client'
 
 class Login extends React.Component {
     
@@ -13,9 +13,10 @@ class Login extends React.Component {
         fetchUrl('auth/', 'POST', {
             "username": username,
             "password": password
-        }).then( (result) => {
-            Cookie.set('authToken', result['token'])
-            this.props.history.push("/");
+        }).then( 
+            (result) => {
+                Cookie.set('authToken', result['token'])
+                this.props.history.push("/");
         })
     }
 
@@ -31,7 +32,7 @@ class Login extends React.Component {
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Password" />
                 </div>
-                <button onClick={ this.login } type="submit" class="btn btn-primary">Submit</button>
+                <button onClick={ this.login } type="submit" class="btn btn-primary">Submit</button><br></br>
             </form>
         );
     }

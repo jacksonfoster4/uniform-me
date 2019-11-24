@@ -1,5 +1,5 @@
 import React from 'react'
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import { Link, withRouter } from 'react-router-dom'
 import NotFound from '../NotFound'
 import Loading from '../Loading'
@@ -11,7 +11,7 @@ class EmployeeDetail extends React.Component {
     
     componentDidMount(){
         let id = this.props.match.params.id
-        fetchUrl(`employees/${id}`).then( (result) => {
+        fetchAuthedUrl(`employees/${id}`).then( (result) => {
             console.log(result)
             this.setState({
                 id: id,
@@ -68,7 +68,7 @@ class EmployeeDetail extends React.Component {
                                             <span class="badge badge-pill badge-success">Not Active</span>
                                             }</td>
                                             <td>{request.date}</td>
-                                            <td>{request.item.name}</td>
+                                            <td>{request.item.name} - {request.item.size}</td>
                                             <td>{request.quantity}</td>
                                           </tr>
                                       )})}

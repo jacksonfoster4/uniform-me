@@ -1,5 +1,5 @@
 import React from 'react'
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import { withRouter } from 'react-router-dom'
 
 class InventoryNew extends React.Component {
@@ -17,7 +17,7 @@ class InventoryNew extends React.Component {
         let url = this.props.url ? this.props.url : "inventory/new/"
         let method = this.props.method? this.props.method : "POST"
 
-        fetchUrl(url, method, body).then( (result) => {
+        fetchAuthedUrl(url, method, body).then( (result) => {
             // if editing existing
             if(this.props.match.params.id){
                 this.props.history.push(`/inventory/${this.props.match.params.id}`)
@@ -41,7 +41,15 @@ class InventoryNew extends React.Component {
                                         <div className="input-group-prepend">
                                             <span className="input-group-text" id="basic-addon1">Item Name</span>
                                         </div>
-                                        <input type="text" className="form-control" name="name"defaultValue={this.props.name} placeholder="Item Name" aria-label="Item Name" aria-describedby="basic-addon1" />
+                                        <input type="text" className="form-control" name="name"defaultValue={this.props.name} placeholder="Item Name" aria-label="Item Name" aria-describedby="basic-addon1" required/>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="input-group mb-3">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text" id="basic-addon1">Item Name</span>
+                                        </div>
+                                        <input type="text" className="form-control" name="size" defaultValue={this.props.size} placeholder="Size" aria-label="Size" aria-describedby="basic-addon1" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -49,7 +57,7 @@ class InventoryNew extends React.Component {
                                         <div className="input-group-prepend">
                                             <span className="input-group-text" id="basic-addon1">Quantity</span>
                                         </div>
-                                        <input type="number" className="form-control" name="quantity" defaultValue={this.props.quantity} placeholder="Current Stock" aria-label="Quantity" aria-describedby="basic-addon1" />
+                                        <input type="number" className="form-control" name="quantity" defaultValue={this.props.quantity} placeholder="Current Stock" aria-label="Quantity" aria-describedby="basic-addon1" required/>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -63,9 +71,17 @@ class InventoryNew extends React.Component {
                                 <div className="col-md-6">
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend">
+                                            <span className="input-group-text" id="basic-addon1">Notes</span>
+                                        </div>
+                                        <textarea className="form-control text-left border-1 rounded" name="notes" defaultValue={this.props.notes} placeholder="Notes" aria-label="Notes" aria-describedby="basic-addon1" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="input-group mb-3">
+                                        <div className="input-group-prepend">
                                             <span className="input-group-text" id="basic-addon1">Need To Reorder</span>
                                         </div>
-                                        <input className="form-control text-left border-1 rounded" type="checkbox" name="need_to_reorder" defaultValue={this.props.need_to_reorder} placeholder="Notes" aria-label="Notes" aria-describedby="basic-addon1" />
+                                        <input className="form-control text-left border-1 rounded" type="checkbox" name="need_to_reorder" defaultValue={this.props.need_to_reorder} placeholder="Need to Reorder" aria-label="Notes" aria-describedby="basic-addon1" />
                                     </div>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@ import Core from './Core'
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Login from './LoginComponents/Login'
+import ProtectedRoute from './ProtectedRoute'
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/login" component={Login} />
-          <Route component={Core} />
+          <ProtectedRoute component={Core} />
         </Switch>
       </BrowserRouter>
     </div>

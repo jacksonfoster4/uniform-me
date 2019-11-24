@@ -6,9 +6,11 @@ from .models import Item, InventoryEvent
 from .serializers import ItemSerializer
 from request.models import Request
 from employee.models import Employee
+from rest_framework import permissions
 
 # Create your views here.
 class ListItemsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     """
     Provides a get method handler.
     """
@@ -16,6 +18,8 @@ class ListItemsView(generics.ListAPIView):
     serializer_class = ItemSerializer
 
 class RetrieveItemView(APIView):
+   permission_classes = [permissions.IsAuthenticated]
+
    def get(self, request, *args, **kwargs):
         item = format_retrieve_response_with_foreign_fields(kwargs['pk'])
         if item:
@@ -25,7 +29,8 @@ class RetrieveItemView(APIView):
         return Response(None, status=404)
 
 class CreateItemView(generics.CreateAPIView):
-   
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
@@ -39,11 +44,13 @@ class CreateItemView(generics.CreateAPIView):
         return Response(s.errors, status=400)    
 
 class UpdateItemView(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
 class DestroyItemView(generics.DestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer

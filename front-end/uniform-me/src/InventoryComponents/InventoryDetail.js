@@ -1,5 +1,5 @@
 import React from 'react'
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
 import Loading from '../Loading'
 import NotFound from '../NotFound'
@@ -10,7 +10,7 @@ class InventoryDetail extends React.Component {
     }
     componentDidMount(){
         let id = this.props.match.params.id
-        fetchUrl(`inventory/${id}`).then( (result) => {
+        fetchAuthedUrl(`inventory/${id}`).then( (result) => {
             this.setState({
                 id: id,
                 item: result,
@@ -36,16 +36,18 @@ class InventoryDetail extends React.Component {
                                 <div className="display-3 text-left">
                                     {this.state.item.name}
                                 </div>
-                                    { this.state.item.quantity ? <div className="display-4 text-left">Qty: {this.state.item.quantity}</div> : null }
-                                     { this.state.item.reorder_point ? <div><h3>Reorder Point: {this.state.item.reorder_point}</h3></div> : null }
-                                    { this.state.item.need_to_reorder ? <div className="badge badge-danger"><h3>Need To Reorder</h3></div>  : null }<br></br>
-                                    <Link to={`/inventory/${this.state.item.id}/edit`} className="btn text-left mt-3 btn-secondary">Edit Item</Link>
+                                    <div className="display-4 d-inline">Size: { this.state.item.size ? this.state.item.size : null }</div><br></br>
+                                    <h4 className="text-left">Qty: { this.state.item.quantity ? this.state.item.quantity : null }</h4>
+                                    <h3 className="text-left d-inline">Reorder Point: </h3>{ this.state.item.reorder_point ? this.state.item.reorder_point : null }<br></br>
+                                    { this.state.item.need_to_reorder ? <div className="badge badge-danger"><h3>Need To Reorder</h3><br></br></div>  : null }
+                                    <h4 className="d-inline">Notes:</h4>{ this.state.item.notes ? <div className="d-inline"><p className="pl-3 d-inline">{this.state.item.notes}</p></div>  : null }
+                                    <br></br><Link to={`/inventory/${this.state.item.id}/edit`} className="btn text-left mt-3 btn-secondary">Edit Item</Link>
                             </div>
                             <div class="col-md-6">
-                            <div className="">
+                            <div className="pb-4">
+                            <h3 className="display-4">Requests</h3>
                             { this.state.item.requests.length ? 
                                 <div>
-                                    <h3 className="display-4">Requests</h3>
                                     <table class="rounded table">
                                     <thead class="thead-dark">
                                       <tr>
@@ -73,9 +75,9 @@ class InventoryDetail extends React.Component {
                                   </table>
                                   </div>
                                 : null}
-                                <Link to="/requests/new" className="btn btn-primary">New Request</Link>
+                                <Link to="/requests/new" className="btn mt-3 btn-primary">New Request</Link>
                             </div>
-                            <div className="">
+                            <div className="pt-4">
                             { this.state.item.events.length ? 
                                 <div>
                                     <h3 className="display-4">Activity</h3>

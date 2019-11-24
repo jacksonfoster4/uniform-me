@@ -1,16 +1,16 @@
 import React from 'react'
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import { withRouter } from 'react-router-dom'
-
+import Loading from '../Loading'
 class RequestNew extends React.Component {
     state = {
         loading: true
     }
     componentDidMount(){
-        fetchUrl("inventory/",).then( (result) => {
+        fetchAuthedUrl("inventory/",).then( (result) => {
             this.setState({ items: result})
         })
-        fetchUrl("employees/",).then( (result) => {
+        fetchAuthedUrl("employees/",).then( (result) => {
             this.setState({ 
                 employees: result,
                 loading: false
@@ -31,7 +31,7 @@ class RequestNew extends React.Component {
         let url = this.props.url ? this.props.url : "requests/new/"
         let method = this.props.method? this.props.method : "POST"
 
-        fetchUrl(url, method, body).then( (result) => {
+        fetchAuthedUrl(url, method, body).then( (result) => {
             if(this.props.match.params.id){
                 this.props.history.push(`/requests/${this.props.match.params.id}`)
             }
@@ -43,9 +43,7 @@ class RequestNew extends React.Component {
     render(){
         if(this.state.loading){
             return (
-                <div>
-                    <div>Loading...</div>
-                </div>
+                <Loading />
             )
         }
         return (
@@ -66,7 +64,7 @@ class RequestNew extends React.Component {
                                                     <option 
                                                     selected={this.props.item ? this.props.item['id'] == item['id'] : false} 
                                                     value={item['id']}> 
-                                                        {item['name']} 
+                                                        {item['name']} - {item['size']} 
                                                     </option>
                                                 )})
                                             : null }

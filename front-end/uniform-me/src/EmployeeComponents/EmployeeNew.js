@@ -1,5 +1,5 @@
 import React from 'react'
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import { withRouter } from 'react-router-dom'
 
 class EmployeesNew extends React.Component {
@@ -20,7 +20,7 @@ class EmployeesNew extends React.Component {
         let url = this.props.url ? this.props.url : "employees/new/"
         let method = this.props.method? this.props.method : "POST"
 
-        fetchUrl(url, method, body).then( (result) => {
+        fetchAuthedUrl(url, method, body).then( (result) => {
             if(this.props.match.params.id){
                 this.props.history.push(`employees/${this.props.match.params.id}`)
             }

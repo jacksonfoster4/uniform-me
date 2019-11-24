@@ -1,6 +1,6 @@
 import React from 'react'
 import EmployeeNew from './EmployeeNew'
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 
 class EmployeeEdit extends React.Component {
     state={
@@ -8,7 +8,7 @@ class EmployeeEdit extends React.Component {
     }
     delete = (employee) => {
         if(window.confirm("Are you sure you want to delete this employee?")){
-            fetchUrl(`/employees/${employee.id}/delete/`, "DELETE").then( (result) => {
+            fetchAuthedUrl(`/employees/${employee.id}/delete/`, "DELETE").then( (result) => {
                 this.props.history.replace('/employees')
                 window.location.reload() }
             )
@@ -16,7 +16,7 @@ class EmployeeEdit extends React.Component {
     }
     componentDidMount(){
         let id = this.props.match.params.id
-        fetchUrl(`employees/${id}`).then((result) => {
+        fetchAuthedUrl(`employees/${id}`).then((result) => {
             this.setState({
                 url: `employees/${id}/edit/`,
                 employee: result,

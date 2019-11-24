@@ -1,6 +1,9 @@
 import Cookies from 'js-cookie'
 
-const root = "http://localhost:8000/api/"
+let root = "http://localhost:8000/api/"
+if(Cookies.get('demo')){
+    root = '/demo/api'
+}
 async function fetchUrl(path, method, body){
     if(path[0] == "/"){
         path = path.substring(1)
@@ -56,5 +59,5 @@ function getAuthToken(){
     return Cookies.get('authToken')
 }
 
-export default fetchUrl
-export { fetchAuthedUrl }
+export default fetchAuthedUrl
+export { fetchUrl }

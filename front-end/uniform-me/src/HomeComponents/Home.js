@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
 import Loading from '../Loading'
 
@@ -8,7 +8,7 @@ class Home extends React.Component {
         loading: true
     }
     componentDidMount(){
-        fetchUrl("home").then( (result) => {
+        fetchAuthedUrl("home").then( (result) => {
             this.setState(result)
             this.setState({loading: false})
         })

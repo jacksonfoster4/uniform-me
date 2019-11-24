@@ -1,6 +1,6 @@
 import React from 'react'
 import InventoryNew from './InventoryNew'
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import Loading from '../Loading'
 import { withRouter } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ class InventoryEdit extends React.Component {
     }
     delete = (item) => {
         if(window.confirm("Are you sure you want to delete this item?")){
-            fetchUrl(`/inventory/${item.id}/delete/`, "DELETE").then( (result) => {
+            fetchAuthedUrl(`/inventory/${item.id}/delete/`, "DELETE").then( (result) => {
                 this.props.history.replace('inventory')
                 window.location.reload() }
             )
@@ -18,7 +18,7 @@ class InventoryEdit extends React.Component {
     }
     componentDidMount(){
         let id = this.props.match.params.id
-        fetchUrl(`inventory/${id}`).then((result) => {
+        fetchAuthedUrl(`inventory/${id}`).then((result) => {
             this.setState({
                 url: `inventory/${id}/edit/`,
                 item: result,

@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchUrl from '../uniform-me-client'
+import fetchAuthedUrl from '../uniform-me-client'
 import { Link } from 'react-router-dom'
 import Loading from '../Loading'
 import NotFound from '../NotFound'
@@ -9,7 +9,7 @@ class InventoryList extends React.Component {
         loading:true
     }
     componentDidMount(){
-        fetchUrl("inventory").then( (result) => {
+        fetchAuthedUrl("inventory").then( (result) => {
             this.setState({
                 loading: false,
                 items: result
@@ -33,7 +33,7 @@ class InventoryList extends React.Component {
                         <div className="col-md-4">
                             <div className="card mb-4 shadow-sm">
                                 <div className="card-body">
-                                    <h5 className="card-heading text-left">{ item['name']}
+                                    <h5 className="card-heading text-left">{ item['name']} { item['size'] ? <span>- {item['size']}</span>: null}
                                         { item['need_to_reorder'] ? <span class="badge card-text ml-2 badge-danger">REORDER</span> : null}
                                     </h5>
                                     <p className="card-text text-left"><strong>Quantity: </strong>{item['quantity']}</p>

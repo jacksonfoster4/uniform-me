@@ -29,6 +29,9 @@ class Header extends React.Component {
                         <li className={window.location.pathname.includes('/requests') ? "nav-item active" : "nav-item"}>
                             <a className="nav-link" href="/requests" tabIndex="-1" aria-disabled="true">Requests</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={this.logout} tabIndex="-1" aria-disabled="true">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
