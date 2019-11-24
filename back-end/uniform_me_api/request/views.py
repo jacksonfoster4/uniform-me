@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Request
@@ -13,6 +13,8 @@ class ListRequestsView(generics.ListAPIView):
     """
     Provides a get method handler.
     """
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Request.objects.all().order_by('-active')
     serializer_class = ListRequestSerializer
     
@@ -22,6 +24,8 @@ class RetrieveRequestView(generics.RetrieveAPIView):
     """
     Provides a get method handler.
     """
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Request.objects.all()
     serializer_class = ListRequestSerializer
 
@@ -29,6 +33,8 @@ class CreateRequestView(generics.CreateAPIView):
     """
     Provides a get method handler.
     """
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
@@ -42,11 +48,13 @@ class CreateRequestView(generics.CreateAPIView):
         return Response(s.errors, status=400) 
 
 class UpdateRequestView(generics.UpdateAPIView):
-    
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
 class DestroyRequestView(generics.DestroyAPIView):
-    
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Request.objects.all()
     serializer_class = RequestSerializer

@@ -13,7 +13,3 @@ class Request(models.Model):
 
     def __str__(self):
         return "{} request for {} {} - {}".format(self.employee.name, self.quantity, self.item.name, 'Active' if self.active else 'Not Active' )
-
-class TypeForm(models.Model):
-    content = models.TextField()
-    date = models.DateField()

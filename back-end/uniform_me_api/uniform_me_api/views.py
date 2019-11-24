@@ -8,9 +8,8 @@ from request.models import Request
 from django.contrib.auth.models import User
 from uniform_me_api.serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
 
 
 
@@ -23,6 +22,7 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 class Home(APIView):
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, format=None):
         return JsonResponse({

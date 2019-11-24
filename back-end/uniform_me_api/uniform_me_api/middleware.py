@@ -6,8 +6,6 @@ class CheckForAlertsMiddleware():
         self.get_response = get_response
     
     def __call__(self, request):
-        # Code to be executed for each request before
-        # the view (and later middleware) are called.
 
         # check if employee has been longer for 30 days
         employees = Employee.objects.filter(has_thirty_day_alert__isnull=True)

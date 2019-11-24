@@ -1,9 +1,16 @@
 import Cookies from 'js-cookie'
 
-let root = "http://localhost:8000/api/"
+let root = "localhost:8000"
+let path = '/api/'
+
 if(Cookies.get('demo')){
-    root = '/demo/api'
+    path = '/demo/api/' 
 }
+if(window.location.hostname.split(".")[0] == "www") {
+    root = "http://www.uniformme.thefoundationworks.com" 
+}
+root = root + path
+
 async function fetchUrl(path, method, body){
     if(path[0] == "/"){
         path = path.substring(1)

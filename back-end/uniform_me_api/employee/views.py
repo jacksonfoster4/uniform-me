@@ -6,10 +6,12 @@ from .models import Employee
 from request.models import Request
 from .serializers import EmployeeSerializer
 from inventory.models import Item
+from rest_framework import permissions
 
 # Create your views here.
 class ListEmployeesView(APIView):
-   
+    permission_classes = [permissions.IsAuthenticated]
+
     def get(self, request, *args, **kwargs):
         data = []
         employees = Employee.objects.all()
@@ -24,6 +26,8 @@ class ListEmployeesView(APIView):
 
 
 class RetrieveEmployeeView(APIView):
+   permission_classes = [permissions.IsAuthenticated]
+
    def get(self, request, *args, **kwargs):
         employee = Employee.objects.filter(id=kwargs['pk'])
         if employee:
@@ -45,16 +49,19 @@ class RetrieveEmployeeView(APIView):
         return Response(None, status=404)
 
 class CreateEmployeeView(generics.CreateAPIView):
-    
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
 class UpdateEmployeeView(generics.UpdateAPIView):
-    
+    permission_classes = [permissions.IsAuthenticated]
+   
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
 class DestroyEmployeeView(generics.DestroyAPIView):
-    
+    permission_classes = [permissions.IsAuthenticated]
+  
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
