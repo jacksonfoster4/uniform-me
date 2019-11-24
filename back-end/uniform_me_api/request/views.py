@@ -15,6 +15,10 @@ class ListRequestsView(generics.ListAPIView):
     """
     queryset = Request.objects.all().order_by('-active')
     serializer_class = ListRequestSerializer
+    
+    def get_queryset(self):
+        return get_demo_or_regular_queryset(Request, self.context.request)
+       
 
 class RetrieveRequestView(generics.RetrieveAPIView):
     """
@@ -49,5 +53,8 @@ class DestroyRequestView(generics.DestroyAPIView):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
 
-
-        
+def get_demo_or_regular_queryset(model, request):
+    if request['demo']:
+        return model.objects.using('demo').all()
+    else:
+        return model.objects.all()

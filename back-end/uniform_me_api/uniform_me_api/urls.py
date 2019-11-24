@@ -18,7 +18,7 @@ from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token  # <-- Here
 from . import views
 
-urlpatterns = [
+urls = [
     path('admin/', admin.site.urls),
     path('api/', include([
         path('users/', views.UserList.as_view()),
@@ -30,6 +30,8 @@ urlpatterns = [
         path('auth/', obtain_auth_token),
 
     ]))
-
-    
+]
+urlpatterns = [
+    path('demo/', include(urls)),
+    *urls
 ]
