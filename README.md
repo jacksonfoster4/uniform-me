@@ -6,7 +6,7 @@ When I moved into my new role at The Foundation Works, one of my projects was to
 
 I set out to solve that. I created this app as a way to accurately track  everything involved in the uniform pipeline such as inventory, managing requests, tracking employees, and providing pertinent info about uniform usage. Additionally, by hosting this as a web app, it enables other employees to easily access it and it becomes a more robust solution for the company.
 
-Some the issues we faced include
+Some of the issues we faced include
 
  - Tracking the inventory of uniforms
  - Tracking the usage of uniforms
@@ -16,7 +16,7 @@ Some the issues we faced include
  
  This app tackles all of these issues and is consistently used within The Foundation Works.
 
-# The Tech
+## The Tech
 This app is built with a completely decoupled back and front end. The back end is built with **Django** and **Django REST** framework. It exposes an **API** for the **React/Redux** front end to securely consume. This was then served by **Gunicorn** and **Nginx**  on an Ubuntu server with the app processes managed by **systemd**.
 
 ## The Demo
