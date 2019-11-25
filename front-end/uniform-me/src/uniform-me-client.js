@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-let root = "localhost:8000"
+let root = "http://localhost:8000"
 let path = '/api/'
 
 if(Cookies.get('demo')){
