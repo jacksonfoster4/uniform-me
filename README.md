@@ -19,6 +19,8 @@ Some of the issues we faced include
 ## The Tech
 This app is built with a completely decoupled back and front end. The back end is built with **Django** and **Django REST** framework. It exposes an **API** for the **React/Redux** front end to securely consume. This was then served by **Gunicorn** and **Nginx**  on an Ubuntu server with the app processes managed by **systemd**.
 
+![Screenshot](./back-end/screenshot.jpg)
+
 ## The Demo
 
 For the demo functionality, I originally planned on allowing **one** instance of the back end to communicate with two different databases, a production database and a demo database.  As I began implementing this I realized this wasn't the best approach because all of my generic views (most of the views in the app) were getting cluttered. You can only override `get_queryset` and write `Employee.objects.using('demo').all()` so many times before you rethink your approach. 
