@@ -17,7 +17,7 @@ Some of the issues we faced include
  This app tackles all of these issues and is consistently used within The Foundation Works.
 
 ## The Tech
-This app is built with a completely decoupled back and front end. The back end is built with **Django** and **Django REST** framework. It exposes an **API** for the **React/Redux** front end to securely consume. This was then served by **Gunicorn** and **Nginx**  on an Ubuntu server with the app processes managed by **systemd**.
+This app is built with a completely decoupled back and front end. The back end is built with **Django** and **Django REST** framework. It exposes an **API** for the **React** front end to securely consume. This was then served by **Gunicorn** and **Nginx**  on an Ubuntu server with the app processes managed by **systemd**.
 
 ![Screenshot](./back-end/screenshot.jpg)
 
